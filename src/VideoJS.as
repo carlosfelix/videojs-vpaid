@@ -452,7 +452,7 @@ package{
             try {
                 
                 if (_vpaidSource.length > 0) {
-                    _app.model.adContainer.setSrcTest(adSWF);
+                    _app.model.adContainer.setSrcTest(_vpaidSource);
                     console(_app.model.adContainer.getSrc());
                     _app.model.adContainer.loadAdAsset();
                     return;
