@@ -31,6 +31,7 @@ package{
 		
 		private var _debug:Boolean = false;
 		private var _vpaidUrl:String = "";
+        private var _vpaidSource:String = "";
 		private var _vpaidParams:String = "";
         
         public function VideoJS() {
@@ -168,6 +169,7 @@ package{
 			// Set VPAID variables
 			_debug 			= humanToBoolean(loaderInfo.parameters.vpaidDebug);
 			_vpaidUrl		= loaderInfo.parameters.vpaidUrl;
+            _vpaidSource    = loaderInfo.parameters.vpaidSource;
 			_vpaidParams	= loaderInfo.parameters.vpaidParams;
 			
 			var pattern:RegExp = /\|\|/g;
@@ -449,6 +451,13 @@ package{
 			
             try {
                 
+                if (_vpaidSource.length > 0) {
+                    _app.model.adContainer.setSrcTest(adSWF);
+                    console(_app.model.adContainer.getSrc());
+                    _app.model.adContainer.loadAdAsset();
+                    return;
+                }
+
 				if (_vpaidUrl.length == 0) {
 					console("Unable to initiate VPAID ad. Url was invalid.");
 					_app.model.adContainer.invalidVPAIDURL();
